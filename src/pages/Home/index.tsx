@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Text } from "react-native";
 import api from "../../service/api";
 
 import * as Styled from "./styles";
@@ -14,8 +15,13 @@ type Pokemon = {
   types: PokemonType[];
 };
 
+type Request = {
+  id: number;
+  types: PokemonType[];
+};
+
 export function Home() {
-  const [pokemons, setPokemons] = useState();
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     async function getAllPokemons() {
@@ -34,18 +40,24 @@ export function Home() {
         })
       );
 
-      console.log(payload);
+      setPokemons(payload);
     }
 
     getAllPokemons();
   }, []);
 
-  async function getMorePokemonInfo(url: string) {
+  async function getMorePokemonInfo(url: string): Promise<Request> {
     const response = await api.get(url);
     const { id, types } = response.data;
 
     return { id, types };
   }
 
-  return <Styled.Container></Styled.Container>;
+  return (
+    <Styled.Container>
+      {pokemons.map((pokemon) => (
+        <Text key={pokemon.id}>{pokemon.name}</Text>
+      ))}
+    </Styled.Container>
+  );
 }
