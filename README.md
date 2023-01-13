@@ -19,7 +19,7 @@
 
 ## 💻 Project
 
-Pokedex project developer following figma's layout and design, using TypeScript and Styled Components. Also, fetching pokemon data from [PokéAPI](https://pokeapi.co/).
+Project of a pokedex for listing pokemons following the layout defined in figma using TypeScript, Styled Components and fetching pokemon data from [PokéAPI](https://pokeapi.co/).
 
 ## 🚀 Technologies
 
