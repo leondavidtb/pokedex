@@ -19,8 +19,7 @@
 
 ## 💻 Project
 
-Project developed during the last NLW of 2022 promoted by Rocketseat.
-Application for creating pools for the cup, where it is also possible to login with Google and join a pool and register guesses.
+Pokedex project developer following figma's layout and design, using TypeScript and Styled Components. Also, fetching pokemon data from [PokéAPI](https://pokeapi.co/).
 
 ## 🚀 Technologies
 
