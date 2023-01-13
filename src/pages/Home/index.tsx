@@ -1,19 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { FlatList, Text } from "react-native";
+import { Card, PokemonData, PokemonType } from "../../components/Card";
 import api from "../../service/api";
 
 import * as Styled from "./styles";
-
-type PokemonType = {
-  type: string;
-};
-
-type Pokemon = {
-  name: string;
-  url: string;
-  id: number;
-  types: PokemonType[];
-};
 
 type Request = {
   id: number;
@@ -21,7 +11,7 @@ type Request = {
 };
 
 export function Home() {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonData[]>([]);
 
   useEffect(() => {
     async function getAllPokemons() {
@@ -29,7 +19,7 @@ export function Home() {
       const { results } = response.data;
 
       const payload = await Promise.all(
-        results.map(async (pokemon: Pokemon) => {
+        results.map(async (pokemon: PokemonData) => {
           const { id, types } = await getMorePokemonInfo(pokemon.url);
 
           return {
@@ -55,9 +45,11 @@ export function Home() {
 
   return (
     <Styled.Container>
-      {pokemons.map((pokemon) => (
-        <Text key={pokemon.id}>{pokemon.name}</Text>
-      ))}
+      <FlatList
+        data={pokemons}
+        keyExtractor={(pokemon) => pokemon.id.toString()}
+        renderItem={({ item: pokemon }) => <Card data={pokemon} />}
+      ></FlatList>
     </Styled.Container>
   );
 }
