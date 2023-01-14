@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Card, PokemonData, PokemonType } from "../../components/Card";
 import api from "../../service/api";
+import pokeballHeader from "../../assets/img/pokeball.png";
 
 import * as Styled from "./styles";
 
@@ -12,6 +14,13 @@ type Request = {
 
 export function Home() {
   const [pokemons, setPokemons] = useState<PokemonData[]>([]);
+  const { navigate } = useNavigation();
+
+  function handleNavigation(pokemonId: number) {
+    navigate("Detail", {
+      pokemonId,
+    });
+  }
 
   useEffect(() => {
     async function getAllPokemons() {
@@ -46,9 +55,26 @@ export function Home() {
   return (
     <Styled.Container>
       <FlatList
+        ListHeaderComponent={
+          <>
+            <Styled.Header source={pokeballHeader} />
+            <Styled.Title>Pokédex</Styled.Title>
+            <Styled.Subtitle>
+              Search for Pokémon by name or using the National Pokédex number.
+            </Styled.Subtitle>
+          </>
+        }
+        contentContainerStyle={{ paddingHorizontal: 20 }}
         data={pokemons}
         keyExtractor={(pokemon) => pokemon.id.toString()}
-        renderItem={({ item: pokemon }) => <Card data={pokemon} />}
+        renderItem={({ item: pokemon }) => (
+          <Card
+            data={pokemon}
+            onPress={() => {
+              handleNavigation(pokemon.id);
+            }}
+          />
+        )}
       ></FlatList>
     </Styled.Container>
   );

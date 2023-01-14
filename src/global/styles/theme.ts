@@ -3,6 +3,7 @@ export default {
     background: "#fff",
     text_white: "#fff",
     text: "#050617",
+    text_black: "#17171B",
     light_text: "rgba(23, 23, 27, 0.6)",
     detail: "#747476",
 
