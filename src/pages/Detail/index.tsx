@@ -123,7 +123,34 @@ export function Detail() {
             <Styled.DotsImage source={dots} />
           </Styled.Header>
 
-          <Styled.Container></Styled.Container>
+          <Styled.Container>
+            <Styled.Title type={pokemonDetails.types[0].type.name}>
+              Base Stats
+            </Styled.Title>
+            {pokemonDetails.stats.map((attribute) => (
+              <Styled.StatsBar key={attribute.stat.name}>
+                <Styled.Attributes>{attribute.stat.name}</Styled.Attributes>
+                <Styled.AttributesValue>
+                  {attribute.base_stat}
+                </Styled.AttributesValue>
+                <Styled.ContentBar>
+                  <Styled.ProgressBar
+                    type={pokemonDetails.types[0].type.name}
+                    borderWidth={0}
+                    progress={100}
+                    width={attribute.base_stat}
+                    color={pokemonDetails.color}
+                  ></Styled.ProgressBar>
+                </Styled.ContentBar>
+              </Styled.StatsBar>
+            ))}
+            <Styled.Title type={pokemonDetails.types[0].type.name}>
+              Abilities
+            </Styled.Title>
+            {pokemonDetails.abilities.map((ability) => (
+              <Styled.Ability>{ability.ability.name}</Styled.Ability>
+            ))}
+          </Styled.Container>
         </ScrollView>
       )}
     </>
