@@ -31,7 +31,7 @@ export const PokemonId = styled.Text`
 export const PokemonName = styled.Text`
   ${({ theme }) => css`
     font-weight: bold;
-    font-size: 26px;
+    font-size: 24px;
     line-height: 31px;
     margin-top: 5px;
     text-transform: capitalize;
