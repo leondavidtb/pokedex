@@ -9,7 +9,7 @@ type TypeProps = {
 export const Header = styled.View<TypeProps>`
   ${({ theme, type }) => css`
     background-color: ${theme.colors.backgroundCard[type]};
-    height: 280px;
+    height: 300px;
     padding: 20px;
     flex-direction: row;
     align-items: center;

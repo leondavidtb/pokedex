@@ -15,7 +15,7 @@
 
 <br/>
 
-<!-- ![Cover](./assets/Capa.png) --> 
+![Cover](./src//assets//cover.png)
 
 ## 💻 Project
 
@@ -31,7 +31,7 @@ This project was developed with the main following technologies:
 
 ## 🔖 Layout
 
-You can view the layout of the project in the [mobile](<https://www.figma.com/file/THLxZSlOoUYMZrjFg0Kl1M/Pok%C3%A9dex?node-id=0%3A1>) version.
+You can view the layout of the project in the [mobile](https://www.figma.com/file/THLxZSlOoUYMZrjFg0Kl1M/Pok%C3%A9dex?node-id=0%3A1) version.
 
 ## ℹ️ How To Use
 

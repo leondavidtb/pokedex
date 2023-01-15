@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useInfiniteQuery } from "react-query";
-import { FlatList, Text } from "react-native";
+import { FlatList } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Card, PokemonData, PokemonType } from "../../components/Card";
 import { Footer } from "../../components/Footer";
+import { HomeHeader } from "../../components/HomeHeader";
 
 import api from "../../service/api";
-import pokeballHeader from "../../assets/img/pokeball.png";
 
 import * as Styled from "./styles";
 
@@ -24,6 +23,13 @@ export function Home() {
     navigate("Detail", {
       pokemonId,
     });
+  }
+
+  async function getMorePokemonInfo(url: string): Promise<Request> {
+    const response = await api.get(url);
+    const { id, types } = response.data;
+
+    return { id, types };
   }
 
   async function getAllPokemons() {
@@ -50,25 +56,10 @@ export function Home() {
     getAllPokemons();
   }, []);
 
-  async function getMorePokemonInfo(url: string): Promise<Request> {
-    const response = await api.get(url);
-    const { id, types } = response.data;
-
-    return { id, types };
-  }
-
   return (
     <Styled.Container>
       <FlatList
-        ListHeaderComponent={
-          <>
-            <Styled.Header source={pokeballHeader} />
-            <Styled.Title>Pokédex</Styled.Title>
-            <Styled.Subtitle>
-              Search for Pokémon by name or using the National Pokédex number.
-            </Styled.Subtitle>
-          </>
-        }
+        ListHeaderComponent={<HomeHeader />}
         contentContainerStyle={{ paddingHorizontal: 20 }}
         data={pokemons}
         keyExtractor={(pokemon) => pokemon.id.toString()}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { Alert, ScrollView, Text } from "react-native";
+import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
@@ -102,7 +102,9 @@ export function Detail() {
   return (
     <>
       {isLoading ? (
-        <Text style={{ marginTop: 200 }}>Carregando...</Text>
+        <View style={{ marginTop: 300 }}>
+          <ActivityIndicator size={"large"} />
+        </View>
       ) : (
         <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
           <Styled.Header type={pokemonDetails.types[0].type.name}>
