@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FlatList, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Card, PokemonData, PokemonType } from "../../components/Card";
+import { Footer } from "../../components/Footer";
+
 import api from "../../service/api";
 import pokeballHeader from "../../assets/img/pokeball.png";
 
@@ -22,26 +24,26 @@ export function Home() {
     });
   }
 
+  async function getAllPokemons() {
+    const response = await api.get("/pokemon");
+    const { results } = response.data;
+
+    const payload = await Promise.all(
+      results.map(async (pokemon: PokemonData) => {
+        const { id, types } = await getMorePokemonInfo(pokemon.url);
+
+        return {
+          name: pokemon.name,
+          id,
+          types,
+        };
+      })
+    );
+
+    setPokemons(payload);
+  }
+
   useEffect(() => {
-    async function getAllPokemons() {
-      const response = await api.get("/pokemon");
-      const { results } = response.data;
-
-      const payload = await Promise.all(
-        results.map(async (pokemon: PokemonData) => {
-          const { id, types } = await getMorePokemonInfo(pokemon.url);
-
-          return {
-            name: pokemon.name,
-            id,
-            types,
-          };
-        })
-      );
-
-      setPokemons(payload);
-    }
-
     getAllPokemons();
   }, []);
 
@@ -75,6 +77,7 @@ export function Home() {
             }}
           />
         )}
+        ListFooterComponent={<Footer />}
       ></FlatList>
     </Styled.Container>
   );

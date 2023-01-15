@@ -148,7 +148,9 @@ export function Detail() {
               Abilities
             </Styled.Title>
             {pokemonDetails.abilities.map((ability) => (
-              <Styled.Ability>{ability.ability.name}</Styled.Ability>
+              <Styled.Ability key={ability.ability.name}>
+                {ability.ability.name}
+              </Styled.Ability>
             ))}
           </Styled.Container>
         </ScrollView>

@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components/native";
+import { PokemonTypeName } from "../../pages/Detail";
 
-type PokemonType = {
-  type: string;
+export type PokemonType = {
+  type: PokemonTypeName;
 };
 
 export const PokemonCard = styled.TouchableOpacity<PokemonType>`

@@ -2,11 +2,12 @@ import React from "react";
 import { TouchableOpacityProps } from "react-native";
 import dotsImage from "../../assets/img/dots.png";
 import pokeballCard from "../../assets/img/pokeballCard.png";
+import { PokemonTypeName } from "../../pages/Detail";
 import * as Styled from "./styles";
 
 export type PokemonType = {
   type: {
-    name: string;
+    name: PokemonTypeName;
   };
 };
 
@@ -17,7 +18,7 @@ export type PokemonData = {
   types: PokemonType[];
 };
 
-type Props = {
+export type Props = {
   data: PokemonData;
 } & TouchableOpacityProps;
 
@@ -32,7 +33,10 @@ export function Card({ data, ...rest }: Props) {
         ></Styled.CardDetailLeftSide>
         <Styled.PokemonContentType>
           {data.types.map((pokemonType) => (
-            <Styled.PokemonType type={pokemonType.type.name}>
+            <Styled.PokemonType
+              key={pokemonType.type.name}
+              type={pokemonType.type.name}
+            >
               <Styled.PokemonTypeText key={pokemonType.type.name}>
                 {pokemonType.type.name}
               </Styled.PokemonTypeText>
