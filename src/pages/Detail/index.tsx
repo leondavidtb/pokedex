@@ -33,8 +33,17 @@ export type PokemonTypeName =
   | "normal"
   | "bug"
   | "flying"
-  | "eletric"
-  | "ground";
+  | "electric"
+  | "ground"
+  | "dark"
+  | "dragon"
+  | "fairy"
+  | "fighting"
+  | "ghost"
+  | "psychic"
+  | "rock"
+  | "steel"
+  | "ice";
 
 type PokemonType = {
   type: {

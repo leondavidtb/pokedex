@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useInfiniteQuery } from "react-query";
 import { FlatList, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Card, PokemonData, PokemonType } from "../../components/Card";
@@ -16,6 +17,7 @@ type Request = {
 
 export function Home() {
   const [pokemons, setPokemons] = useState<PokemonData[]>([]);
+  const [offset, setOffset] = useState(0);
   const { navigate } = useNavigation();
 
   function handleNavigation(pokemonId: number) {
@@ -25,7 +27,7 @@ export function Home() {
   }
 
   async function getAllPokemons() {
-    const response = await api.get("/pokemon");
+    const response = await api.get(`/pokemon?limit=10&offset=${offset}`);
     const { results } = response.data;
 
     const payload = await Promise.all(
@@ -40,7 +42,8 @@ export function Home() {
       })
     );
 
-    setPokemons(payload);
+    setPokemons((pokemon) => [...pokemon, ...payload]);
+    setOffset(offset + 10);
   }
 
   useEffect(() => {
@@ -77,6 +80,8 @@ export function Home() {
             }}
           />
         )}
+        onEndReachedThreshold={0.1}
+        onEndReached={getAllPokemons}
         ListFooterComponent={<Footer />}
       ></FlatList>
     </Styled.Container>
