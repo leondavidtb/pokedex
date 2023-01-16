@@ -26,6 +26,27 @@ export const Subtitle = styled.Text`
     line-height: 19px;
     font-weight: 400;
     margin-top: 10px;
+    margin-bottom: 10px;
     color: ${theme.colors.detail};
   `}
+`;
+
+export const SearchContainer = styled.View`
+  height: 60px;
+  padding: 20px 25px;
+  background: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  font-weight: 400;
+`;
+
+export const SearchInput = styled.TextInput`
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const SearchImage = styled.Image`
+  position: relative;
+  margin-right: 12px;
 `;
