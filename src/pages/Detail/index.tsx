@@ -4,8 +4,8 @@ import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
-import { circle } from "../../assets/img/circle.png";
-import { dots } from "../../assets/img/dots.png";
+import circle from "../../assets/img/circle.png";
+import dots from "../../assets/img/dots.png";
 import * as Styled from "./styles";
 
 type RouteParams = {
@@ -111,7 +111,9 @@ export function Detail() {
             <Styled.BackButton onPress={handleGoBack}>
               <Feather name="chevron-left" size={24} color="#fff" />
             </Styled.BackButton>
-
+            <Styled.PokemonStyledName>
+              {pokemonDetails.name.toUpperCase()}
+            </Styled.PokemonStyledName>
             <Styled.ContentImage>
               <Styled.CircleImage source={circle} />
               <Styled.PokemonImage

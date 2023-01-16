@@ -64,6 +64,17 @@ export const PokemonName = styled.Text`
   `}
 `;
 
+export const PokemonStyledName = styled.Text`
+  position: absolute;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 119px;
+  top: 50px;
+  left: -25px;
+  color: rgba(255, 255, 255, 0.1);
+`;
+
 export const PokemonTypeContainer = styled.View`
   flex-direction: row;
 `;
@@ -96,7 +107,7 @@ export const DotsImage = styled.Image`
   width: 85px;
   position: absolute;
   right: -20px;
-  top: 220px;
+  top: 200px;
 `;
 
 export const Container = styled.View`
@@ -134,7 +145,7 @@ export const Attributes = styled.Text`
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    width: 110px;
+    width: 89px;
     text-transform: capitalize;
     color: ${theme.colors.text_black};
   `}
@@ -149,6 +160,7 @@ export const AttributesValue = styled.Text`
     text-align: right;
     color: ${theme.colors.detail};
     margin-left: 20px;
+    width: 30px;
   `}
 `;
 
@@ -167,6 +179,5 @@ export const Ability = styled.Text`
     padding: 10px 20px;
     text-transform: capitalize;
     color: ${theme.colors.text_black};
-    /* margin-left: 20px; */
   `}
 `;
