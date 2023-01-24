@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Card, PokemonData, PokemonType } from "../../components/Card";
 import { Footer } from "../../components/Footer";
 import { HomeHeader } from "../../components/HomeHeader";
+import searchIcon from "../../assets/img/searchIcon.png";
 
 import api from "../../service/api";
 
@@ -59,7 +60,15 @@ export function Home() {
   return (
     <Styled.Container>
       <FlatList
-        ListHeaderComponent={<HomeHeader />}
+        ListHeaderComponent={
+          <>
+            <HomeHeader />
+            <Styled.SearchContainer>
+              <Styled.SearchImage source={searchIcon} />
+              <Styled.SearchInput placeholder="What Pokémon are you looking for?"></Styled.SearchInput>
+            </Styled.SearchContainer>
+          </>
+        }
         contentContainerStyle={{ paddingHorizontal: 20 }}
         data={pokemons}
         keyExtractor={(pokemon) => pokemon.id.toString()}
