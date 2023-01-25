@@ -17,7 +17,10 @@ type Request = {
 
 export function Home() {
   const [pokemons, setPokemons] = useState<PokemonData[]>([]);
+  const [foundPokemon, setFoundPokemon] = useState<PokemonData[]>([]);
   const [offset, setOffset] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
+  // const [foundPokemon, setFoundPokemon] = useState<PokemonData[]>([]);
   const { navigate } = useNavigation();
 
   function handleNavigation(pokemonId: number) {
@@ -53,9 +56,26 @@ export function Home() {
     setOffset(offset + 10);
   }
 
+  function searchPokemon() {
+    if (!searchTerm) {
+      setPokemons(pokemons);
+    }
+    const found = [...pokemons].filter(
+      (item) =>
+        item?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item?.url?.includes(searchTerm)
+    );
+
+    setPokemons(found);
+  }
+
   useEffect(() => {
     getAllPokemons();
   }, []);
+
+  useEffect(() => {
+    searchPokemon();
+  }, [searchTerm]);
 
   return (
     <Styled.Container>
@@ -65,7 +85,11 @@ export function Home() {
             <HomeHeader />
             <Styled.SearchContainer>
               <Styled.SearchImage source={searchIcon} />
-              <Styled.SearchInput placeholder="What Pokémon are you looking for?"></Styled.SearchInput>
+              <Styled.SearchInput
+                placeholder="What Pokémon are you looking for?"
+                value={searchTerm}
+                onChangeText={(text) => setSearchTerm(text)}
+              ></Styled.SearchInput>
             </Styled.SearchContainer>
           </>
         }
