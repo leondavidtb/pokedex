@@ -19,27 +19,25 @@ export const Header = styled.View<TypeProps>`
 
 export const BackButton = styled.TouchableOpacity`
   position: absolute;
-  top: 70px;
-  left: 40px;
+  top: 50px;
+  left: 20px;
 `;
 
 export const ContentImage = styled.View`
   position: relative;
-`;
-
-export const CircleImage = styled.Image`
-  width: 125px;
-  height: 125px;
-  position: absolute;
+  top: -180px;
 `;
 
 export const PokemonImage = styled.Image`
-  width: 125px;
-  height: 125px;
+  width: 200px;
+  height: 200px;
 `;
 
 export const Content = styled.View`
-  margin-left: 30px;
+  margin-top: -180px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;
 
 export const PokemonId = styled.Text`
@@ -48,7 +46,11 @@ export const PokemonId = styled.Text`
     line-height: 19px;
     font-style: normal;
     font-weight: bold;
-    color: ${theme.colors.light_text};
+    color: ${theme.colors.text_white};
+
+    position: absolute;
+    top: 50px;
+    left: 350px;
   `}
 `;
 
@@ -61,6 +63,9 @@ export const PokemonName = styled.Text`
 
     line-height: 38px;
     color: ${theme.colors.text_white};
+    position: absolute;
+    top: 40px;
+    left: 80px;
   `}
 `;
 
@@ -115,18 +120,23 @@ export const Container = styled.View`
     flex: 1;
     padding: 20px;
     background-color: ${theme.colors.background};
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     margin-top: -40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `}
 `;
 
 export const Title = styled.Text<TypeProps>`
   ${({ theme, type }) => css`
     font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 19px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 16px;
     padding: 20px;
     color: ${theme.colors.boxType[type]};
   `}
@@ -134,7 +144,7 @@ export const Title = styled.Text<TypeProps>`
 
 export const StatsBar = styled.View`
   width: 100%;
-  padding: 10px 20px;
+  padding: 2px;
   flex-direction: row;
   align-items: center;
 `;
@@ -164,8 +174,13 @@ export const AttributesValue = styled.Text`
   `}
 `;
 
-export const ContentBar = styled.View`
-  margin-left: 20px;
+export const ContentBar = styled.View<TypeProps>`
+  ${({ theme, type }) => css`
+    margin-left: 20px;
+    width: 200px;
+    background: #f8f8ff;
+    border-radius: 4px;
+  `}
 `;
 
 export const ProgressBar = styled(Progress.Bar)<TypeProps>``;

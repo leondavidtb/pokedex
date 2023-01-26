@@ -4,7 +4,6 @@ import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
-import circle from "../../assets/img/circle.png";
 import dots from "../../assets/img/dots.png";
 import * as Styled from "./styles";
 
@@ -111,11 +110,17 @@ export function Detail() {
             <Styled.BackButton onPress={handleGoBack}>
               <Feather name="chevron-left" size={24} color="#fff" />
             </Styled.BackButton>
+            <Styled.PokemonId>#{pokemonDetails.id}</Styled.PokemonId>
+            <Styled.PokemonName>{pokemonDetails.name}</Styled.PokemonName>
             <Styled.PokemonStyledName>
               {pokemonDetails.name.toUpperCase()}
             </Styled.PokemonStyledName>
+
+            <Styled.DotsImage source={dots} />
+          </Styled.Header>
+
+          <Styled.Container>
             <Styled.ContentImage>
-              <Styled.CircleImage source={circle} />
               <Styled.PokemonImage
                 source={{
                   uri: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonDetails.id}.png`,
@@ -123,8 +128,6 @@ export function Detail() {
               />
             </Styled.ContentImage>
             <Styled.Content>
-              <Styled.PokemonId>#{pokemonDetails.id}</Styled.PokemonId>
-              <Styled.PokemonName>{pokemonDetails.name}</Styled.PokemonName>
               <Styled.PokemonTypeContainer>
                 {pokemonDetails.types.map(({ type }) => (
                   <Styled.PokemonType key={type.name} type={type.name}>
@@ -133,10 +136,9 @@ export function Detail() {
                 ))}
               </Styled.PokemonTypeContainer>
             </Styled.Content>
-            <Styled.DotsImage source={dots} />
-          </Styled.Header>
-
-          <Styled.Container>
+            <Styled.Title type={pokemonDetails.types[0].type.name}>
+              About
+            </Styled.Title>
             <Styled.Title type={pokemonDetails.types[0].type.name}>
               Base Stats
             </Styled.Title>
@@ -146,14 +148,14 @@ export function Detail() {
                 <Styled.AttributesValue>
                   {attribute.base_stat}
                 </Styled.AttributesValue>
-                <Styled.ContentBar>
+                <Styled.ContentBar type={pokemonDetails.types[0].type.name}>
                   <Styled.ProgressBar
                     type={pokemonDetails.types[0].type.name}
                     borderWidth={0}
                     progress={100}
                     width={attribute.base_stat}
                     color={pokemonDetails.color}
-                  ></Styled.ProgressBar>
+                  />
                 </Styled.ContentBar>
               </Styled.StatsBar>
             ))}
