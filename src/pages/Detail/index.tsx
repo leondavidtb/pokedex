@@ -85,8 +85,6 @@ export function Detail() {
         const currentType = types[0].type.name as PokemonTypeName;
         const color = colors.backgroundCard[currentType];
 
-        console.log(response.data);
-
         setPokemonDetail({
           stats,
           abilities,
