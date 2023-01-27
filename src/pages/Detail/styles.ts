@@ -185,14 +185,81 @@ export const ContentBar = styled.View<TypeProps>`
 
 export const ProgressBar = styled(Progress.Bar)<TypeProps>``;
 
+export const AbilityBox = styled.View`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Ability = styled.Text`
   ${({ theme }) => css`
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    padding: 10px 20px;
+    padding: 5px 20px;
     text-transform: capitalize;
     color: ${theme.colors.text_black};
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #212121;
   `}
+`;
+
+export const AboutSection = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const PokemonWeightValue = styled.Text`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #212121;
+`;
+
+export const PokemonHeightValue = styled.Text`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #212121;
+`;
+
+export const PokemonAboutText = styled.Text`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 12px;
+  color: #666666;
+`;
+
+export const PokemonSeparator = styled.View`
+  width: 1px;
+  height: 48px;
+  background: #e0e0e0;
+`;
+
+export const AboutIcon = styled.Image`
+  display: flex;
+  gap: 16px;
+  margin-right: 8px;
+`;
+
+export const HeightSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 24px;
+`;
+export const WeightSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: 24px;
 `;

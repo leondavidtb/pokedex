@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
+import { ActivityIndicator, Alert, ScrollView, View, Text } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
 import dots from "../../assets/img/dots.png";
+import heightIcon from "../../assets/img/heightIcon.png";
+import weightIcon from "../../assets/img/weightIcon.png";
 import * as Styled from "./styles";
 
 type RouteParams = {
@@ -54,6 +56,8 @@ type PokemonProps = {
   id: number;
   name: string;
   color: string;
+  height: number;
+  weight: number;
   stats: Stats[];
   abilities: Abilities[];
   types: PokemonType[];
@@ -75,10 +79,13 @@ export function Detail() {
     async function getPokemonDetail() {
       try {
         const response = await api.get(`/pokemon/${pokemonId}`);
-        const { stats, abilities, id, name, types } = response.data;
+        const { stats, abilities, id, name, types, height, weight } =
+          response.data;
 
         const currentType = types[0].type.name as PokemonTypeName;
         const color = colors.backgroundCard[currentType];
+
+        console.log(response.data);
 
         setPokemonDetail({
           stats,
@@ -87,6 +94,8 @@ export function Detail() {
           name,
           types,
           color,
+          height,
+          weight,
         });
       } catch (error) {
         Alert.alert("Oops, there was an error!");
@@ -139,6 +148,34 @@ export function Detail() {
             <Styled.Title type={pokemonDetails.types[0].type.name}>
               About
             </Styled.Title>
+            <Styled.AboutSection>
+              <Styled.HeightSection>
+                <Styled.AboutIcon source={heightIcon} />
+                <Styled.PokemonWeightValue>
+                  {pokemonDetails.weight} kg
+                </Styled.PokemonWeightValue>
+              </Styled.HeightSection>
+              {/* <Styled.PokemonAboutText>Weight</Styled.PokemonAboutText> */}
+
+              <Styled.PokemonSeparator />
+              <Styled.WeightSection>
+                <Styled.AboutIcon source={weightIcon} />
+                <Styled.PokemonHeightValue>
+                  {pokemonDetails.height} m
+                </Styled.PokemonHeightValue>
+              </Styled.WeightSection>
+              {/* <Styled.PokemonAboutText>Height</Styled.PokemonAboutText> */}
+
+              <Styled.PokemonSeparator />
+              <Styled.AbilityBox>
+                {pokemonDetails.abilities.map((ability) => (
+                  <Styled.Ability key={ability.ability.name}>
+                    {ability.ability.name}
+                  </Styled.Ability>
+                ))}
+              </Styled.AbilityBox>
+              {/* <Styled.PokemonAboutText>Moves</Styled.PokemonAboutText> */}
+            </Styled.AboutSection>
             <Styled.Title type={pokemonDetails.types[0].type.name}>
               Base Stats
             </Styled.Title>
@@ -158,14 +195,6 @@ export function Detail() {
                   />
                 </Styled.ContentBar>
               </Styled.StatsBar>
-            ))}
-            <Styled.Title type={pokemonDetails.types[0].type.name}>
-              Abilities
-            </Styled.Title>
-            {pokemonDetails.abilities.map((ability) => (
-              <Styled.Ability key={ability.ability.name}>
-                {ability.ability.name}
-              </Styled.Ability>
             ))}
           </Styled.Container>
         </ScrollView>
