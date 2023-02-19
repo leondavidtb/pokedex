@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRoute, useNavigation } from "@react-navigation/native";
-import { ActivityIndicator, Alert, ScrollView, View, Text } from "react-native";
+import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
 import { Feather } from "@expo/vector-icons";
@@ -149,20 +149,18 @@ export function Detail() {
             <Styled.AboutSection>
               <Styled.HeightSection>
                 <Styled.AboutIcon source={heightIcon} />
-                <Styled.PokemonWeightValue>
-                  {pokemonDetails.weight} kg
-                </Styled.PokemonWeightValue>
+                <Styled.PokemonHeightValue>
+                  {pokemonDetails.height} m
+                </Styled.PokemonHeightValue>
               </Styled.HeightSection>
-              {/* <Styled.PokemonAboutText>Weight</Styled.PokemonAboutText> */}
 
               <Styled.PokemonSeparator />
               <Styled.WeightSection>
                 <Styled.AboutIcon source={weightIcon} />
-                <Styled.PokemonHeightValue>
-                  {pokemonDetails.height} m
-                </Styled.PokemonHeightValue>
+                <Styled.PokemonWeightValue>
+                  {pokemonDetails.weight} kg
+                </Styled.PokemonWeightValue>
               </Styled.WeightSection>
-              {/* <Styled.PokemonAboutText>Height</Styled.PokemonAboutText> */}
 
               <Styled.PokemonSeparator />
               <Styled.AbilityBox>
@@ -172,7 +170,6 @@ export function Detail() {
                   </Styled.Ability>
                 ))}
               </Styled.AbilityBox>
-              {/* <Styled.PokemonAboutText>Moves</Styled.PokemonAboutText> */}
             </Styled.AboutSection>
             <Styled.Title type={pokemonDetails.types[0].type.name}>
               Base Stats

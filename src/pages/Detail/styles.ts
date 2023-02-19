@@ -175,12 +175,10 @@ export const AttributesValue = styled.Text`
 `;
 
 export const ContentBar = styled.View<TypeProps>`
-  ${({ theme, type }) => css`
-    margin-left: 20px;
-    width: 200px;
-    background: #f8f8ff;
-    border-radius: 4px;
-  `}
+  margin-left: 20px;
+  width: 200px;
+  background: #f8f8ff;
+  border-radius: 4px;
 `;
 
 export const ProgressBar = styled(Progress.Bar)<TypeProps>``;
