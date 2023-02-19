@@ -37,7 +37,7 @@ export function Home() {
   }
 
   async function getAllPokemons() {
-    const response = await api.get(`/pokemon?limit=10&offset=${offset}`);
+    const response = await api.get(`/pokemon?limit=999`);
     const { results } = response.data;
 
     const payload = await Promise.all(
@@ -60,10 +60,8 @@ export function Home() {
     if (!searchTerm) {
       setPokemons(pokemons);
     }
-    const found = [...pokemons].filter(
-      (item) =>
-        item?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item?.url?.includes(searchTerm)
+    const found = [...pokemons].filter((item) =>
+      item?.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setPokemons(found);
