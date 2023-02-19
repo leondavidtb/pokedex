@@ -18,9 +18,7 @@ type Request = {
 export function Home() {
   const [pokemons, setPokemons] = useState<PokemonData[]>([]);
   const [foundPokemon, setFoundPokemon] = useState<PokemonData[]>([]);
-  const [offset, setOffset] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [foundPokemon, setFoundPokemon] = useState<PokemonData[]>([]);
   const { navigate } = useNavigation();
 
   function handleNavigation(pokemonId: number) {
@@ -53,7 +51,6 @@ export function Home() {
     );
 
     setPokemons((pokemon) => [...pokemon, ...payload]);
-    setOffset(offset + 10);
   }
 
   function searchPokemon() {
