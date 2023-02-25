@@ -14,7 +14,7 @@ type RouteParams = {
 };
 
 type Stats = {
-  base_stat: 62;
+  base_stat: number;
   stat: {
     name: string;
   };
