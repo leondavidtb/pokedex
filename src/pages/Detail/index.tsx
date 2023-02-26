@@ -3,11 +3,10 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 import { ActivityIndicator, Alert, ScrollView, View } from "react-native";
 import api from "../../service/api";
 import { useTheme } from "styled-components";
-import { Feather } from "@expo/vector-icons";
-import dots from "../../assets/img/dots.png";
 import heightIcon from "../../assets/img/heightIcon.png";
 import weightIcon from "../../assets/img/weightIcon.png";
 import * as Styled from "./styles";
+import { DetailHeader } from "../../components/DetailHeader";
 
 type RouteParams = {
   pokemonId: number;
@@ -46,20 +45,20 @@ export type PokemonTypeName =
   | "steel"
   | "ice";
 
-type PokemonType = {
+export type PokemonType = {
   type: {
     name: PokemonTypeName;
   };
 };
 
-type PokemonProps = {
+export type PokemonProps = {
   id: number;
   name: string;
-  color: string;
-  height: number;
-  weight: number;
-  stats: Stats[];
-  abilities: Abilities[];
+  color?: string;
+  height?: number;
+  weight?: number;
+  stats?: Stats[];
+  abilities?: Abilities[];
   types: PokemonType[];
 };
 
@@ -69,11 +68,6 @@ export function Detail() {
   const { colors } = useTheme();
   const [pokemonDetails, setPokemonDetail] = useState({} as PokemonProps);
   const [isLoading, setIsLoading] = useState(true);
-  const { goBack } = useNavigation();
-
-  function handleGoBack() {
-    goBack();
-  }
 
   useEffect(() => {
     async function getPokemonDetail() {
@@ -113,19 +107,11 @@ export function Detail() {
         </View>
       ) : (
         <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
-          <Styled.Header type={pokemonDetails.types[0].type.name}>
-            <Styled.BackButton onPress={handleGoBack}>
-              <Feather name="chevron-left" size={24} color="#fff" />
-            </Styled.BackButton>
-            <Styled.PokemonId>#{pokemonDetails.id}</Styled.PokemonId>
-            <Styled.PokemonName>{pokemonDetails.name}</Styled.PokemonName>
-            <Styled.PokemonStyledName>
-              {pokemonDetails.name.toUpperCase()}
-            </Styled.PokemonStyledName>
-
-            <Styled.DotsImage source={dots} />
-          </Styled.Header>
-
+          <DetailHeader
+            types={pokemonDetails.types}
+            id={pokemonDetails.id}
+            name={pokemonDetails.name}
+          />
           <Styled.Container>
             <Styled.ContentImage>
               <Styled.PokemonImage
@@ -164,7 +150,7 @@ export function Detail() {
 
               <Styled.PokemonSeparator />
               <Styled.AbilityBox>
-                {pokemonDetails.abilities.map((ability) => (
+                {pokemonDetails.abilities?.map((ability) => (
                   <Styled.Ability key={ability.ability.name}>
                     {ability.ability.name}
                   </Styled.Ability>
@@ -174,7 +160,7 @@ export function Detail() {
             <Styled.Title type={pokemonDetails.types[0].type.name}>
               Base Stats
             </Styled.Title>
-            {pokemonDetails.stats.map((attribute) => (
+            {pokemonDetails.stats?.map((attribute) => (
               <Styled.StatsBar key={attribute.stat.name}>
                 <Styled.Attributes>{attribute.stat.name}</Styled.Attributes>
                 <Styled.AttributesValue>
